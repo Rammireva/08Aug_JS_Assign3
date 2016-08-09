@@ -1,0 +1,40 @@
+<html>
+<head><title>Advanced JS</title></head>
+<body>
+<form novalidate>
+    <input type="text" name="name" id="name" placeholder="Name"><br /><br />
+    <input type="email" name="email" id="email" placeholder="E-Mail"><br /><br />
+    <input type="text" name="phone" id="phone" placeholder="Phone Number"><br /><br />
+    <textarea name="address" id="address" placeholder="Address"></textarea><br /><br />
+    <input type="submit" name="submit" id="submit">
+</form>
+<p></p>
+</body>
+<script type="application/javascript">
+    (function(){
+        var sub = document.getElementById('submit');
+        sub.onclick = function(e){
+            e.preventDefault();
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+            function validate(field, field_name){
+                if(field_name == 'E-Mail' && field != ''){
+                    var atpos = field.indexOf('@');
+                    var dotpos = field.lastIndexOf('.');
+                    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=field.length){
+                        document.getElementsByTagName('p')[0].innerHTML += 'Invalid E-mail <br />';
+                    }
+                }
+                if(field == ''){
+                    document.getElementsByTagName('p')[0].innerHTML += 'Please Enter '+ field_name + ' <br />';
+                }
+            }
+            validate(name,'Username');
+            validate(phone,'Phone Number');
+            validate(email,'E-Mail');
+        }
+    }())
+</script>
+</html>
